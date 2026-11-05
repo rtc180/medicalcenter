@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /staff/
+Disallow: /login.php
+Disallow: /logout.php
+Disallow: /database/
+Disallow: /config/
+Disallow: /includes/

@@ -1,0 +1,35 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+config/local.php
+config/secrets.php
+
+# Local database exports and backups
+*.sql.gz
+*.dump
+*.bak
+*.backup
+database/backup/
+*-backup-*.json
+backup*.json
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+
+# Dependencies and generated caches
+vendor/
+node_modules/
+.phpunit.cache/
+coverage/

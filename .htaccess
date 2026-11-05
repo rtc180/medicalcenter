@@ -1,0 +1,37 @@
+# Apache hardening + performance for Good Samaritan Medical Center
+Options -Indexes
+ServerSignature Off
+
+# Force HTTPS in production (uncomment when SSL is installed)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^robots\.txt$ robots.php [L]
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+</IfModule>
+
+# Block direct web access to internals
+RedirectMatch 404 ^/(config|includes|database)/
+<FilesMatch "\.(sql|md|log|ini|env|bak)$">
+  Require all denied
+</FilesMatch>
+
+# PHP safety
+<IfModule mod_php.c>
+  php_flag display_errors off
+  php_flag expose_php off
+</IfModule>
+
+# Caching + compression (SEO / page speed)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType image/png "access plus 90 days"
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json application/xml
+</IfModule>
